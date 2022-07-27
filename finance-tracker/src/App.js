@@ -9,16 +9,22 @@ import { useState } from 'react';
 function App() {
 
   const [showAddCategory, setShowAddCategory] = useState(true);
+  const [showAddTransactions, setShowAddTransactions] = useState(false);
 
+  if (showAddCategory) {
+    return <AddCategory setShowAddCategory={setShowAddCategory} />
+  } 
+
+  if (showAddTransactions) {
+    return <AddTransaction setShowAddTransactions={setShowAddTransactions}/>
+  }
 
   return (
-    <div className="App">
-      <Header />
-      <TransactionTable />
+    <>
+      <Header setShowAddCategory={setShowAddCategory}/>
+      <TransactionTable setShowAddTransactions={setShowAddTransactions}/>
       <Chart />
-      <AddCategory />
-      <AddTransaction />
-    </div>
+    </>
   );
 }
 
